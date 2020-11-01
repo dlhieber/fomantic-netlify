@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "fomantic-ui": "^2.8.7"
   },
   "devDependencies": {},
