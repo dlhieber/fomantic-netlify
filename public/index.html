@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <!-- Standard Meta -->
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
@@ -11,105 +12,69 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
   <!-- Site Properties -->
-  <title>Login Example - Semantic</title>
-  
-  
+  <title>Garbage Disoposal Company</title>
+
+
 
   <style type="text/css">
     body {
       background-color: #FFFFFF;
     }
-    body > .grid {
+
+    body>.grid {
       height: 100%;
     }
+
     .image {
       margin-top: -100px;
     }
+
     .column {
       max-width: 800px;
     }
   </style>
   <script>
-  $(document)
-    .ready(function() {
-      $('.ui.form')
-        .form({
-          fields: {
-            email: {
-              identifier  : 'email',
-              rules: [
-                {
-                  type   : 'empty',
-                  prompt : 'Please enter your e-mail'
-                },
-                {
-                  type   : 'email',
-                  prompt : 'Please enter a valid e-mail'
-                }
-              ]
-            },
-            password: {
-              identifier  : 'password',
-              rules: [
-                {
-                  type   : 'empty',
-                  prompt : 'Please enter your password'
-                },
-                {
-                  type   : 'length[6]',
-                  prompt : 'Your password must be at least 6 characters'
-                }
-              ]
-            }
-          }
+    $(document)
+      .ready(function () {
+        $('.mainarea').addClass('disabled');
+        $('.mainarea.item').addClass('disabled');
+        $('.login.button').click(()=>{
+          netlifyIdentity.open();
         })
-      ;
-    }
-    
-    
-    
-    )
-  ;
+        netlifyIdentity.on('login', user => console.log('login', user));
+        $('.disabled').removeClass('disabled');
+        $('#Title').html("Hello, "+ netlifyIdentity.currentUser().user_metadata.full_name)
+        $('.login').html("Logout")
+        }
+
+      );
   </script>
 </head>
+
 <body>
-  <div data-netlify-identity-menu></div>
-<div class="ui middle aligned center aligned grid">
-  <div class="column">
-    <h2 class="ui teal image header">
-      <div class="content">
-        Log-in to your account
-      </div>
-    </h2>
-    <form class="ui large form">
-      <div class="ui stacked segment">
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="user icon"></i>
-            <input type="text" name="email" placeholder="E-mail address">
-          </div>
+
+  <div class="ui middle aligned center aligned grid">
+    <div class="column">
+      <h1 class="ui image header">
+        <div id="Title" class="content">
+          Please Click the Button Below to log in
         </div>
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="lock icon"></i>
-            <input type="password" name="password" placeholder="Password">
-          </div>
-        </div>
-        <div class="ui fluid large teal submit button">Login</div>
+      </h1>
+
+      <div class="ui login fluid massive primary button">
+        Login
       </div>
-
-      <div class="ui error message"></div>
-
-    </form>
-
-    <div class="ui grid">
+      <div class="ui mainarea segment disabled">
+      
+    
+      <div class="ui mainarea grid">
         <div class="four wide column">
-          <div class="ui vertical fluid tabular menu">
+          <div class="ui mainarea vertical fluid tabular menu massive hidden">
             <a class="item active">
-              Bio
+              New Transaction
             </a>
             <a class="item">
-              Pics
+              Reports
             </a>
             <a class="item">
               Companies
@@ -120,15 +85,15 @@
           </div>
         </div>
         <div class="twelve wide stretched column">
-          <div class="ui segment">
+          <div class="ui mainarea segment">
             This is an stretched grid column. This segment will always match the tab height
           </div>
         </div>
       </div>
-
-
+    </div>
+    
+    </div>
   </div>
-</div>
 
 </body>
 
