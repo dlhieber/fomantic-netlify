@@ -36,15 +36,30 @@
   <script>
     $(document)
       .ready(function () {
-        $('.mainarea').addClass('disabled');
-        $('.mainarea.item').addClass('disabled');
-        $('.login.button').click(()=>{
-          netlifyIdentity.open();
-        })
-        netlifyIdentity.on('login', user => console.log('login', user));
-        $('.disabled').removeClass('disabled');
-        $('#Title').html("Hello, "+ netlifyIdentity.currentUser().user_metadata.full_name)
-        $('.login').html("Logout")
+          $('.mainarea').css('visibility','hidden');
+
+          $('.login.button').click(() => {
+            netlifyIdentity.open();
+          })
+          netlifyIdentity.on('login', user => {
+            $('#Title').html("Hello, " + netlifyIdentity.currentUser().user_metadata.full_name)
+            $('.mainarea').css('visibility','visible')
+            $('.login').html("Logout")
+          });
+          netlifyIdentity.on('logout', ()=> {
+            $('.mainarea').css('visibility','hidden');
+          })
+          
+          if(netlifyIdentity.currentUser()){
+            $('#Title').html("Hello, " + netlifyIdentity.currentUser().user_metadata.full_name)
+            $('.mainarea').css('visibility','visible')
+            $('.login').html("Logout")
+          }
+
+          $('.item').click((item) => {
+            $('.item').removeClass('active')
+            item.target.classList.add('active')
+          })
         }
 
       );
@@ -64,34 +79,31 @@
       <div class="ui login fluid massive primary button">
         Login
       </div>
-      <div class="ui mainarea segment disabled">
-      
-    
-      <div class="ui mainarea grid">
-        <div class="four wide column">
-          <div class="ui mainarea vertical fluid tabular menu massive hidden">
-            <a class="item active">
-              New Transaction
-            </a>
-            <a class="item">
-              Reports
-            </a>
-            <a class="item">
-              Companies
-            </a>
-            <a class="item">
-              Links
-            </a>
+      <div class="ui mainarea segment">
+
+
+        <div class="ui mainarea grid">
+          <div class="four wide column">
+            <div class="ui mainarea vertical fluid tabular menu massive hidden">
+              <a class="item active">
+                Add Transaction
+              </a>
+              <a class="item">
+                View Transactions
+              </a>
+              <a class="item">
+                Reports
+              </a>
+            </div>
           </div>
-        </div>
-        <div class="twelve wide stretched column">
-          <div class="ui mainarea segment">
-            This is an stretched grid column. This segment will always match the tab height
+          <div class="twelve wide stretched column">
+            <div class="ui mainarea segment">
+              This is an stretched grid column. This segment will always match the tab height
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    
+
     </div>
   </div>
 
