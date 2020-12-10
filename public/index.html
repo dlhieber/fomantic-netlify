@@ -50,8 +50,9 @@
             $('.login').html("Logout")
           }
 
-          $('.item').click((item) => {
-            $('.item').removeClass('active')
+          $('.menu .item').click((item) => {
+            console.log($('.menu.item.active').data)
+            $(".menu a.item.active").removeClass("active")
             item.target.classList.add('active')
           })
         }
@@ -76,8 +77,8 @@
       
       <div class="ui fluid tabular three item menu">
         <a class="item active">Sumbit Article</a>
-        <a class="item">Visualize Results</a>
-        <a class="item">Aggregated results</a>
+        <a class="item ">Visualize Results</a>
+        <a class="item ">Aggregated results</a>
       </div>
 
     </div>
