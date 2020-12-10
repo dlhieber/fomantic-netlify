@@ -1,5 +1,20 @@
 <script>
-  $('.submit.button').api()
+  $('.submit.button').api({
+    action: 'submit article',
+    method: "POST",
+    serializeForm: true,
+    data: {
+      foo: 'baz'
+    },
+    beforeSend: function(settings) {
+      if(settings.data.username == '') {
+        settings.data.username = 'New User';
+      }
+      // open console to inspect object
+      console.log(settings.data);
+      return settings;
+    }
+  })
 </script>
 
 
