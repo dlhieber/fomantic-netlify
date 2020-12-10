@@ -1,5 +1,5 @@
 {
-  "name": "garbage-disposal-site",
+  "name": "fomantic-netlify",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -14,12 +14,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dlhieber/garbage-disposal-site.git"
+    "url": "git+https://github.com/dlhieber/fomantic-netlify.git"
   },
   "author": "Daniel Hiebert",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dlhieber/garbage-disposal-site/issues"
+    "url": "https://github.com/dlhieber/fomantic-netlify/issues"
   },
-  "homepage": "https://github.com/dlhieber/garbage-disposal-site#readme"
+  "homepage": "https://github.com/dlhieber/fomantic-netlify#readme"
 }
