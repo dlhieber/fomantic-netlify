@@ -8,7 +8,6 @@
     "faunadb": "^3.0.1",
     "fomantic-ui": "^2.8.7"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

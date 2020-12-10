@@ -30,6 +30,11 @@
   <script>
     $(document)
       .ready(function () {
+
+          $.fn.api.settings.api = {
+            'submit article': '/.netlify/functions/submit-article'
+          };
+
           $('#mainarea').css('visibility','hidden');
 
           $('.login.button').click(() => {
