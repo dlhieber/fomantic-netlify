@@ -10,7 +10,7 @@ const client = new Client({
 /* export our lambda function as named "handler" export */
 const handler = async (event) => {
   formdata=querystring.decode(event.body)
-  console.log(formdata)
+  
   /* parse the string body into a useable JS object */
  
   const item = {
