@@ -1,22 +1,24 @@
 const { query, Client } = require('faunadb')
+const querystring = require('querystring')
 require('dotenv').config()
 /* configure faunaDB Client with our secret */
 const client = new Client({
   secret: process.env.FAUNADB_SERVER_SECRET,
+  keepAlive:false,
 })
 
 /* export our lambda function as named "handler" export */
 const handler = async (event) => {
+  formdata=querystring.decode(event.body)
+  console.log(formdata)
   /* parse the string body into a useable JS object */
  
-  const data = event.body
-  console.log('Function `create` invoked', data)
   const item = {
-    data,
+    data:formdata
   }
   /* construct the fauna query */
   return client
-    .query(query.Create(query.Ref('classes/items'), item))
+    .query(query.Create(query.Collection('SubmittedArticles'), item))
     .then((response) => {
       console.log('success', response)
       /* Success! return the response with statusCode 200 */

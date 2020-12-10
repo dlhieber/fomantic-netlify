@@ -1,16 +1,17 @@
 <script>
+  
+ 
   $('.submit.button').api({
     action: 'submit article',
     method: "POST",
-    serializeForm: true,
-    
+    serializeForm:true,
     beforeSend: function(settings) {
       if(!netlifyIdentity.currentUser().app_metadata.roles.includes('Admin')) {
-        
+        $(this)
         return false;
       }
+      console.log(settings)
       // open console to inspect object
-      console.log(settings.data);
       return settings;
     },
 
