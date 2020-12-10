@@ -30,23 +30,23 @@
   <script>
     $(document)
       .ready(function () {
-          $('.mainarea').css('visibility','hidden');
+          $('#mainarea').css('visibility','hidden');
 
           $('.login.button').click(() => {
             netlifyIdentity.open();
           })
           netlifyIdentity.on('login', user => {
             $('#Title').html("Hello, " + netlifyIdentity.currentUser().user_metadata.full_name)
-            $('.mainarea').css('visibility','visible')
+            $('#mainarea').css('visibility','visible')
             $('.login').html("Logout")
           });
           netlifyIdentity.on('logout', ()=> {
-            $('.mainarea').css('visibility','hidden');
+            $('#mainarea').css('visibility','hidden');
           })
           
           if(netlifyIdentity.currentUser()){
             $('#Title').html("Hello, " + netlifyIdentity.currentUser().user_metadata.full_name)
-            $('.mainarea').css('visibility','visible')
+            $('#mainarea').css('visibility','visible')
             $('.login').html("Logout")
           }
 
@@ -54,7 +54,19 @@
             console.log($('.menu.item.active').data)
             $(".menu a.item.active").removeClass("active")
             item.target.classList.add('active')
+            
           })
+
+          $('#submit-article').click(() =>{
+            $('#mainarea').load('submit-article.html')
+          })
+          $('#visualize-results').click(() =>{
+            $('#mainarea').load('visualize-results.html')
+          })
+          $('#aggregated-results').click(() =>{
+            $('#mainarea').load('aggregated-results.html')
+          })
+
         }
 
       );
@@ -76,14 +88,18 @@
 
       
       <div class="ui fluid tabular three item menu">
-        <a class="item active">Sumbit Article</a>
-        <a class="item ">Visualize Results</a>
-        <a class="item ">Aggregated results</a>
+        <a id="submit-article" class="item active" >Submit Article</a>
+        <a id="visualize-results" class="item ">Visualize Results</a>
+        <a id="aggregated-results"class="item ">Aggregated results</a>
       </div>
+      <div id="mainarea" class="ui left aligned container padded">
 
+      </div>
+    
     </div>
   </div>
 
+  
 </body>
 
 </html>

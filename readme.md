@@ -7,8 +7,6 @@ netlify-cli
 
 npm i
 
-## build command for netlify
-gulp build
-
-## build commmand for development 
-netlify build
+## build commmands for development 
+guilp build
+netlify build dev
