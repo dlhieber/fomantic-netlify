@@ -6,7 +6,8 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "faunadb": "^3.0.1",
-    "fomantic-ui": "^2.8.7"
+    "fomantic-ui": "^2.8.7",
+    "form-serializer": "^2.5.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

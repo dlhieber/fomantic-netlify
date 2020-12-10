@@ -1,5 +1,48 @@
 <script>
-  $('.submit.button').api()
+  $('.submit.button').api({
+    action: 'submit article',
+    method: "POST",
+    serializeForm: true,
+    
+    beforeSend: function(settings) {
+      if(!netlifyIdentity.currentUser().app_metadata.roles.includes('Admin')) {
+        
+        return false;
+      }
+      // open console to inspect object
+      console.log(settings.data);
+      return settings;
+    },
+
+    onResponse: function(response) {
+      // make some adjustments to response
+      return response;
+    },
+    successTest: function(response) {
+      // test whether a JSON response is valid
+      return response.success || false;
+    },
+    onComplete: function(response, element, xhr) {
+      // always called after XHR complete
+      console.log(response)
+    },
+    onSuccess: function(response, element, xhr) {
+      // valid response and response.success = true
+     
+    },
+    onFailure: function(response, element, xhr) {
+      // request failed, or valid response but response.success = false
+      
+    },
+    onError: function(errorMessage, element, xhr) {
+      // invalid response
+      console.log(errorMessage)
+    },
+    onAbort: function(errorMessage, element, xhr) {
+      // navigated to a new page, CORS issue, or user canceled request
+      console.log(errorMessage)
+    }
+  })
 </script>
 
 
