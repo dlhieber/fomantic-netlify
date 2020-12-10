@@ -1,5 +1,5 @@
 const { query, Client } = require('faunadb')
-
+require('dotenv').config()
 /* configure faunaDB Client with our secret */
 const client = new Client({
   secret: process.env.FAUNADB_SERVER_SECRET,
@@ -8,7 +8,8 @@ const client = new Client({
 /* export our lambda function as named "handler" export */
 const handler = async (event) => {
   /* parse the string body into a useable JS object */
-  const data = JSON.parse(event.body)
+ 
+  const data = event.body
   console.log('Function `create` invoked', data)
   const item = {
     data,
