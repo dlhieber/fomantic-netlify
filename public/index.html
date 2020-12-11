@@ -36,7 +36,6 @@
             'submit article': '/.netlify/functions/submit-article'
           };
 
-          $('#mainarea').css('visibility','hidden');
 
           $('.login.button').click(() => {
             netlifyIdentity.open();
@@ -47,7 +46,9 @@
             $('.login').html("Logout")
           });
           netlifyIdentity.on('logout', ()=> {
-            $('#mainarea').css('visibility','hidden');
+            $('#Title').html("Bye!")
+            $('#mainarea').empty()
+            $('.login').html("Login")
           })
           
           if(netlifyIdentity.currentUser()){
@@ -60,7 +61,7 @@
             console.log($('.menu.item.active').data)
             $(".menu a.item.active").removeClass("active")
             item.target.classList.add('active')
-            
+            $('#meanarea').empty()
           })
 
           $('#submit-article').click(() =>{
