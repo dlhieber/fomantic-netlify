@@ -5,12 +5,17 @@
     action: 'submit article',
     method: "POST",
     serializeForm:true,
+    text: {
+      inactive   : 'Submit',
+      active     : 'Submitted',
+      deactivate : 'Please Login',
+      flash      : 'Submitted'
+    },
     beforeSend: function(settings) {
       if(!netlifyIdentity.currentUser().app_metadata.roles.includes('Admin')) {
         $(this)
         return false;
       }
-      // open console to inspect object
       return settings;
     },
 
@@ -43,12 +48,15 @@
       console.log(errorMessage)
     }
   })
+  if(netlifyIdentity.currentUser()==null){
+    $('.error.message').html("Please log in to use this page.")
+  }
 </script>
 
 
 <form class="ui form">
     <div class="field">
-      <label>Empty</label>
+      <label>Paste </label>
       <input name="empty" type="text">
     </div>
     <div class="field">

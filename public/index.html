@@ -47,7 +47,7 @@
             $('.login').html("Logout")
           });
           netlifyIdentity.on('logout', ()=> {
-            $('#mainarea').css('visibility','hidden');
+            $('#mainarea').empty()
           })
           
           if(netlifyIdentity.currentUser()){
@@ -60,7 +60,7 @@
             console.log($('.menu.item.active').data)
             $(".menu a.item.active").removeClass("active")
             item.target.classList.add('active')
-            
+            $('#meanarea').empty()
           })
 
           $('#submit-article').click(() =>{
