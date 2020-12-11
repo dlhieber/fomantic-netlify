@@ -8,7 +8,11 @@ const client = new Client({
 })
 
 /* export our lambda function as named "handler" export */
-const handler = async (event) => {
+const handler = async (event, context) => {
+
+  //TODO: check using netlify identity but for some reason clientContext doesn't work locally
+  const {identity, user} = context.clientContext;
+  console.log(event,context)
   formdata=querystring.decode(event.body)
   
   /* parse the string body into a useable JS object */

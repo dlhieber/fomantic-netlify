@@ -36,7 +36,6 @@
             'submit article': '/.netlify/functions/submit-article'
           };
 
-          $('#mainarea').css('visibility','hidden');
 
           $('.login.button').click(() => {
             netlifyIdentity.open();
@@ -47,7 +46,9 @@
             $('.login').html("Logout")
           });
           netlifyIdentity.on('logout', ()=> {
+            $('#Title').html("Bye!")
             $('#mainarea').empty()
+            $('.login').html("Login")
           })
           
           if(netlifyIdentity.currentUser()){
