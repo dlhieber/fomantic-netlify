@@ -12,7 +12,12 @@ const handler = async (event, context) => {
 
   //TODO: check using netlify identity but for some reason clientContext doesn't work locally
   const {identity, user} = context.clientContext;
-  console.log(event,context)
+
+  //TODO: user doesn't show on production
+  console.log(user)
+
+  //TODO: identity does show in producution but not in dev
+  console.log(identity)
   formdata=querystring.decode(event.body)
   
   /* parse the string body into a useable JS object */
@@ -20,6 +25,8 @@ const handler = async (event, context) => {
   const item = {
     data:formdata
   }
+
+  if(identity!=null){
   /* construct the fauna query */
   return client
     .query(query.Create(query.Collection('SubmittedArticles'), item))
@@ -39,6 +46,13 @@ const handler = async (event, context) => {
         body: JSON.stringify(error),
       }
     })
+  }
+  else{
+    return {
+      statusCode:401,
+      body: JSON.stringify('Login with netlify identity')
+    }
+  }
 }
 
 module.exports = { handler }
